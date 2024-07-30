@@ -1,5 +1,7 @@
+import Register from "./_components/auth/Register";
+
 const Page = () => {
-  return <div>初期化</div>;
+  return <Register />;
 };
 
 export default Page;
