@@ -48,7 +48,7 @@ const Register = () => {
       email: string;
       password: string;
       githubId: string;
-    }) => authAPI.authRegister(username, email, password, githubId),
+    }) => authAPI.register(username, email, password, githubId),
     onSuccess: (response: AxiosResponse<AuthRegisterResponse>) => {
       const token = response.data.token;
       Cookies.set("token", token);
@@ -76,6 +76,7 @@ const Register = () => {
   };
 
   return (
+    // TODO: refactor to presentational components in other branch
     <Container maxWidth="sm">
       <Box
         component="form"

@@ -2,7 +2,7 @@ import { AuthRegisterResponse } from "@/app/type/auth";
 import axios, { AxiosResponse } from "axios";
 
 const authAPI = {
-  async authRegister(
+  async register(
     username: string,
     email: string,
     password: string,
