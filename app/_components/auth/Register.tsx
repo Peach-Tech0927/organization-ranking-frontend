@@ -52,7 +52,7 @@ const Register = () => {
     onSuccess: (response: AxiosResponse<AuthRegisterResponse>) => {
       const token = response.data.token;
       Cookies.set("token", token);
-      router.push("/login-success");
+      router.push("/dashboard");
     },
     onError: (error: Error) => {
       alert("Registration failed: " + error.message);
