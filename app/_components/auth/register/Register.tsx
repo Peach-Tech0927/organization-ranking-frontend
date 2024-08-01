@@ -8,9 +8,10 @@ import { FieldValues, useForm, SubmitHandler } from "react-hook-form";
 import { z } from "zod";
 import authAPI from "@/app/_api/auth/auth-api";
 import { useRouter } from "next/navigation";
-import CustomInput from "../common/CustomInput";
+
 import { useState } from "react";
 import { AuthRegisterResponse } from "@/app/type/auth";
+import CustomInput from "../../common/CustomInput";
 
 const schema = z.object({
   name: z.string().min(1, { message: "名前を入力してください" }),
