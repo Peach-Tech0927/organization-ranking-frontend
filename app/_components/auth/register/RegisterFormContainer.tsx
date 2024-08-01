@@ -1,17 +1,15 @@
 "use client";
-import { Button, Container, Typography, Box } from "@mui/material";
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
-import { AxiosResponse } from "axios";
 import Cookies from "js-cookie";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FieldValues, useForm, SubmitHandler } from "react-hook-form";
+import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
 import { z } from "zod";
+import { AxiosResponse } from "axios";
 import authAPI from "@/app/_api/auth/auth-api";
-import { useRouter } from "next/navigation";
-
-import { useState } from "react";
 import { AuthRegisterResponse } from "@/app/type/auth";
-import CustomInput from "../../common/CustomInput";
+import RegisterForm from "./RegisterForm";
 
 const schema = z.object({
   name: z.string().min(1, { message: "名前を入力してください" }),
@@ -50,7 +48,7 @@ const RegisterFormContainer = () => {
       password: string;
       githubId: string;
     }) => authAPI.register(username, email, password, githubId),
-    onSuccess: (response: AxiosResponse<AuthRegisterResponse>) => {
+    onSuccess: (response) => {
       const token = response.data.token;
       Cookies.set("token", token);
       router.push("/dashboard");
@@ -77,65 +75,12 @@ const RegisterFormContainer = () => {
   };
 
   return (
-    // TODO: refactor to presentational components in other branch
-    <Container maxWidth="sm">
-      <Box
-        component="form"
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        justifyContent="center"
-        mt={5}
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        <Typography variant="h4" component="h1" gutterBottom>
-          Register
-        </Typography>
-        <CustomInput
-          id="name"
-          label="ユーザー名"
-          disabled={loading}
-          register={register}
-          errors={errors}
-          required
-        />
-        <CustomInput
-          id="email"
-          label="メールアドレス"
-          disabled={loading}
-          register={register}
-          errors={errors}
-          required
-        />
-        <CustomInput
-          id="password"
-          label="パスワード"
-          type="password"
-          disabled={loading}
-          register={register}
-          errors={errors}
-          required
-        />
-        <CustomInput
-          id="githubId"
-          label="GitHub ID"
-          disabled={loading}
-          register={register}
-          errors={errors}
-          required
-        />
-        <Button
-          type="submit"
-          fullWidth
-          variant="contained"
-          color="primary"
-          sx={{ mt: 3, mb: 2 }}
-          disabled={loading}
-        >
-          {loading ? "Registering..." : "Register"}
-        </Button>
-      </Box>
-    </Container>
+    <RegisterForm
+      onSubmit={handleSubmit(onSubmit)}
+      register={register}
+      errors={errors}
+      loading={loading}
+    />
   );
 };
 
