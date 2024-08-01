@@ -20,7 +20,7 @@ const schema = z.object({
   githubId: z.string().min(1, { message: "GitHub IDを入力してください" }),
 });
 
-const Register = () => {
+const RegisterFormContainer = () => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -139,4 +139,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default RegisterFormContainer;

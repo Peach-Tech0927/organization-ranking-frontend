@@ -1,7 +1,7 @@
-import Register from "./_components/auth/register/Register";
+import RegisterFormContainer from "./_components/auth/register/RegisterFormContainer";
 
 const Page = () => {
-  return <Register />;
+  return <RegisterFormContainer />;
 };
 
 export default Page;
