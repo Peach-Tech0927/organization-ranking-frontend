@@ -6,9 +6,7 @@ import Cookies from "js-cookie";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
 import { z } from "zod";
-import { AxiosResponse } from "axios";
 import authAPI from "@/app/_api/auth/auth-api";
-import { AuthRegisterResponse } from "@/app/type/auth";
 import RegisterForm from "./RegisterForm";
 
 const schema = z.object({
