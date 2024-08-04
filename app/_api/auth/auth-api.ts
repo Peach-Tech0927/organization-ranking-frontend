@@ -1,4 +1,4 @@
-import { AuthRegisterResponse } from "@/app/type/auth";
+import { AuthResponse } from "@/app/type/auth";
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 
 const getBaseUrl = () => {
@@ -14,7 +14,7 @@ const authAPI = {
     email: string,
     password: string,
     githubId: string
-  ): Promise<AxiosResponse<AuthRegisterResponse>> {
+  ): Promise<AxiosResponse<AuthResponse>> {
     const options: AxiosRequestConfig = {
       url: `${getBaseUrl()}/api/auth/register`,
       method: "POST",
@@ -26,7 +26,24 @@ const authAPI = {
       },
     };
 
-    const response = await axios<AuthRegisterResponse>(options);
+    const response = await axios<AuthResponse>(options);
+    return response;
+  },
+
+  async login(
+    email: string,
+    password: string
+  ): Promise<AxiosResponse<AuthResponse>> {
+    const options: AxiosRequestConfig = {
+      url: `${getBaseUrl()}/api/auth/login`,
+      method: "POST",
+      data: {
+        email,
+        password,
+      },
+    };
+
+    const response = await axios<AuthResponse>(options);
     return response;
   },
 };
