@@ -1,12 +1,7 @@
 import { AuthResponse } from "@/app/type/auth";
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 
-const getBaseUrl = () => {
-  if (process.env.NEXT_PUBLIC_API_BASE_URL) {
-    return `${process.env.NEXT_PUBLIC_API_BASE_URL}`;
-  }
-  return `http://localhost:8080`;
-};
+const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8080";
 
 const authAPI = {
   async register(
@@ -16,7 +11,7 @@ const authAPI = {
     githubId: string
   ): Promise<AxiosResponse<AuthResponse>> {
     const options: AxiosRequestConfig = {
-      url: `${getBaseUrl()}/api/auth/register`,
+      url: `${baseURL}/api/auth/register`,
       method: "POST",
       data: {
         username,
@@ -35,7 +30,7 @@ const authAPI = {
     password: string
   ): Promise<AxiosResponse<AuthResponse>> {
     const options: AxiosRequestConfig = {
-      url: `${getBaseUrl()}/api/auth/login`,
+      url: `${baseURL}/api/auth/login`,
       method: "POST",
       data: {
         email,
