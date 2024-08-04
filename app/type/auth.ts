@@ -6,7 +6,7 @@ export type User = {
   username: string;
 };
 
-export type AuthRegisterResponse = {
+export type AuthResponse = {
   token: string;
   user: User;
 };
